@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float life;
+    [SerializeField] private float life = 100f;
 
     [SerializeField] private float counterOrbs = 0;
     
@@ -12,19 +12,33 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float jumHeight = 1.0f;
 
-    [SerializeField] private bool isJumping;
+    [SerializeField] private bool isGrounded;
+    
+    private Rigidbody _rigidbody; 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+
     }
 
+    void FixedUpdate()
+    {
+        Movement();
+    }
+    private void Movement()
+    {
+        float xMove = Input.GetAxisRaw("Horizontal"); 
+        float zMove = Input.GetAxisRaw("Vertical");
+        _rigidbody.velocity = new Vector3(xMove, _rigidbody.velocity.y, zMove) * speed; 
+    }
     private void Jump()
     {
         
@@ -60,10 +74,18 @@ public class PlayerController : MonoBehaviour
         {
             counterOrbs += 2;
         }
+        Destroy(orb);
     }
-
-    private void OnColliderEnter(Collision other)
+    
+    /// <summary>
+    /// Detectamos colisiones para llamar a una función determinada
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnCollisionEnter(Collision other)
     {
-        
+        if(other.gameObject.tag.Contains("orb") )
+        {
+            recollectOrb(other.gameObject);
+        }
     }
 }

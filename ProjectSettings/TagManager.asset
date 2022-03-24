@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - simple_orb
+  - extra_orb
   layers:
   - Default
   - TransparentFX
