@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
         if (orb.tag == "extra_orb")
         {
-            counterOrbs += 2;
+            counterOrbs += 3;
         }
         Destroy(orb);
     }
