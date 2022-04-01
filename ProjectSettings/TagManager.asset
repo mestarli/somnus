@@ -6,6 +6,7 @@ TagManager:
   tags:
   - simple_orb
   - extra_orb
+  - weapon
   layers:
   - Default
   - TransparentFX
