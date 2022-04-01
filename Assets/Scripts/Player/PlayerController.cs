@@ -6,10 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float life = 100f;
     [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float speed = 4.5f;
+    [SerializeField] private float speed = 8.5f;
+    [SerializeField] private float speedRun = 15.5f;
+    private float initialSpeed;
+    
     [SerializeField] private float jumHeight = 1.0f;
 
     [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isJumping;
     
     private CharacterController _characterController;
     private Animator _animator;
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         _characterController = gameObject.GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        initialSpeed = speed;
     }
     // Start is called before the first frame update
     void Start()
@@ -36,13 +41,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // comprobamos que esta tocando suelo, si no es así, es que está saltando
         isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
+        _animator.SetBool("IsGrounded", isGrounded);
 
     }
 
     void FixedUpdate()
     {
+        // Llamamos funcionalidades para moverse, correr, saltar...
+        
+        _animator.SetBool("IsRunning", false);
         Movement();
+        
     }
     private void Movement()
     {
@@ -53,11 +64,41 @@ public class PlayerController : MonoBehaviour
         
         Vector3 move = new Vector3(xMove, 0, zMove);
         
-        _characterController.Move( move * Time.deltaTime);
+        _characterController.Move( move * Time.deltaTime * speed);
+        Run();
     }
     private void Jump()
     {
-        
+        Vector3 direction = new Vector3();
+        if (isGrounded && gameObject.transform.position.y < 0)
+        {
+            direction.y = 0f;
+        }
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            direction.y += Mathf.Sqrt(jumHeight * -3.0f *  gravity);
+
+            direction.y +=  gravity * Time.deltaTime;
+            _characterController.Move(direction * Time.deltaTime);
+        }
+    }
+
+    /// <summary>
+    /// Método para correr
+    /// </summary>
+    private void Run()
+    {
+        bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        if(isShiftKeyDown)
+        {
+            speed = speedRun;
+            _animator.SetBool("IsRunning", isShiftKeyDown);
+           
+        }
+        else
+        {
+            speed = initialSpeed;
+        }
     }
 
     /// <summary>
