@@ -5,27 +5,38 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float life = 100f;
-
-    [SerializeField] private float counterOrbs = 0;
-    
+    [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float speed = 4.5f;
-
     [SerializeField] private float jumHeight = 1.0f;
 
     [SerializeField] private bool isGrounded;
     
-    private Rigidbody _rigidbody; 
+    private CharacterController _characterController;
+    private Animator _animator;
+    
+    //For check if its toching ground
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    
+    
+    [SerializeField] private float counterOrbs = 0;
 
+
+    void Awake()
+    {
+        _characterController = gameObject.GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
 
     }
 
@@ -37,7 +48,12 @@ public class PlayerController : MonoBehaviour
     {
         float xMove = Input.GetAxisRaw("Horizontal"); 
         float zMove = Input.GetAxisRaw("Vertical");
-        _rigidbody.velocity = new Vector3(xMove, _rigidbody.velocity.y, zMove) * speed; 
+        _animator.SetFloat("Walking", Mathf.Abs(xMove));
+        _animator.SetFloat("Walking", Mathf.Abs(zMove));
+        
+        Vector3 move = new Vector3(xMove, 0, zMove);
+        
+        _characterController.Move( move * Time.deltaTime);
     }
     private void Jump()
     {
