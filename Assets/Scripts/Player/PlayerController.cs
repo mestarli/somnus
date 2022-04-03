@@ -12,12 +12,11 @@ public class PlayerController : MonoBehaviour
     private float initialSpeed;
     private Rigidbody _rigidbody;
     
-    [SerializeField] private float jumHeight = 1.0f;
+    [SerializeField] private float jumHeight = 3.5f;
 
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isJumping;
     
-    private CharacterController _characterController;
     private Animator _animator;
     
     //For check if its toching ground
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        _characterController = gameObject.GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         initialSpeed = speed;
         _rigidbody = GetComponent<Rigidbody>();
@@ -54,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         // comprobamos que esta tocando suelo, si no es así, es que está saltando
         isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
-        _animator.SetBool("IsGrounded", isGrounded);
+       
 
     }
 
@@ -64,7 +62,7 @@ public class PlayerController : MonoBehaviour
         
         _animator.SetBool("IsRunning", false);
         Movement();
-        
+        Jump();
         
         //Get Player rotation from Mouse
         inputRot.x = Input.GetAxis("Mouse X") * sensibilityMouse;
@@ -90,19 +88,13 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump()
     {
-        Vector3 direction = new Vector3();
-        if (isGrounded && gameObject.transform.position.y < 0)
-        {
-            direction.y = 0f;
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+            
+            _rigidbody.AddForce(jumHeight * Vector3.up, ForceMode.VelocityChange);
         }
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            direction.y += Mathf.Sqrt(jumHeight * -3.0f *  gravity);
-
-            direction.y +=  gravity * Time.deltaTime;
-            _characterController.Move(direction * Time.deltaTime);
-        }
-    }
+        //_animator.SetBool("IsJumping", isGrounded);
+        
+   }
 
     /// <summary>
     /// Método para correr

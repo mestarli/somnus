@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class PlayerPowers : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    /// <summary>
+    
+    private Animator _animator;
+    
+   /// <summary>
     /// Sin necesidad de orbes
     /// </summary>
     private void basicAttack()

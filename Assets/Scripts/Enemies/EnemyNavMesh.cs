@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerNavMesh : MonoBehaviour
+public class EnemyNavMesh : MonoBehaviour
 {
     [SerializeField] private Transform movePositionTransform;
     

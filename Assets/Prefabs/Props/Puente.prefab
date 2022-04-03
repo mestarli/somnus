@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4120449555794870681}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Puente
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3631334679004683043}
-  m_LocalRotation: {x: 0.0051795794, y: 0.24474706, z: 0.0025540008, w: 0.9695698}
+  m_LocalRotation: {x: 0.0051807165, y: 0.24474582, z: 0.0025533184, w: 0.96957016}
   m_LocalPosition: {x: -91.66, y: 37.55, z: -116.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4130537261243795152}
   - component: {fileID: 8579851809600683092}
   - component: {fileID: 3866596229538407085}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Puentebonito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0563daf3121d6cc40b13f0d21bfc0ab5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 105450800332757700}
   - component: {fileID: 1891483804363074992}
   - component: {fileID: 6099015825050682166}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: columnitas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
