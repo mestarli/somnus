@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 8.5f;
     [SerializeField] private float speedRun = 15.5f;
     private float initialSpeed;
+    private Rigidbody _rigidbody;
     
     [SerializeField] private float jumHeight = 1.0f;
 
@@ -25,17 +26,26 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float counterOrbs = 0;
 
+    // Para la camara
+    private float rotXCamera;
+    [SerializeField]private Transform playerCamera;
+    private Vector2 inputRot;
+    private float sensibilityMouse = 2f;
 
     void Awake()
     {
         _characterController = gameObject.GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         initialSpeed = speed;
+        _rigidbody = GetComponent<Rigidbody>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+     
+        // Get vertical camera rotation
+        rotXCamera = playerCamera.eulerAngles.x;
+
     }
 
     // Update is called once per frame
@@ -54,6 +64,15 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("IsRunning", false);
         Movement();
         
+        
+        //Get Player rotation from Mouse
+        inputRot.x = Input.GetAxis("Mouse X") * sensibilityMouse;
+        inputRot.y = Input.GetAxis("Mouse Y") * sensibilityMouse;
+
+
+        //Method to update camera rotation
+        MovePlayerCamera();
+        
     }
     private void Movement()
     {
@@ -62,9 +81,10 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("Walking", Mathf.Abs(xMove));
         _animator.SetFloat("Walking", Mathf.Abs(zMove));
         
-        Vector3 move = new Vector3(xMove, 0, zMove);
-        
-        _characterController.Move( move * Time.deltaTime * speed);
+        //Movement of player
+        _rigidbody.velocity = transform.forward * speed *  zMove // Forward, Backward movement of player
+                              + transform.right * speed * xMove   // Left, Right Movement of player
+                              + new Vector3(0, _rigidbody.velocity.y, 0);
         Run();
     }
     private void Jump()
@@ -144,5 +164,20 @@ public class PlayerController : MonoBehaviour
         {
             recollectOrb(other.gameObject);
         }
+    }
+    
+    /// <summary>
+    /// Metodo para la rotacion de la camara
+    /// </summary>
+    public void MovePlayerCamera()
+    {
+        rotXCamera -= inputRot.y;
+
+        // Set limits to vertical rotation
+        rotXCamera = Mathf.Clamp(rotXCamera,10,15);
+        // Horizontal rotation camera
+        transform.Rotate(0, inputRot.x * sensibilityMouse,0f);
+        // Vertical rotation camera
+        playerCamera.transform.localRotation = Quaternion.Euler(rotXCamera, 0f, 0f);
     }
 }
