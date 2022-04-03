@@ -170,6 +170,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+        if (other.gameObject.tag == "exit")
+        {
+            SceneManager.LoadScene("ToBeContinued");
+        }
     }
     
     /// <summary>
