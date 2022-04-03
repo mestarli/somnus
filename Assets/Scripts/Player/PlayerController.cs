@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -160,9 +161,22 @@ public class PlayerController : MonoBehaviour
     /// <param name="other"></param>
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag.Contains("orb") )
+        if(other.gameObject.tag.Contains("orb"))
         {
             recollectOrb(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "infinito")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "infinito")
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
     
