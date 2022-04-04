@@ -1405,9 +1405,10 @@ GameObject:
   - component: {fileID: 2538629062921887632}
   - component: {fileID: 3457194958085956350}
   - component: {fileID: 7412675203355080136}
+  - component: {fileID: 1712837252567370214}
   m_Layer: 0
   m_Name: MainCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1480,6 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+  maxLife: 100
   gravity: -9.81
   speed: 4.5
   speedRun: 8.5
@@ -1490,8 +1492,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  counterOrbs: 0
+  counterOrbs: 100
   playerCamera: {fileID: 402069443}
+  sensibilityMouse: 2
 --- !u!65 &3457194958085956350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1521,6 +1524,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1712837252567370214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457194958085956349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f0b9af519407d46966337578887cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3579927299153356865
 GameObject:
   m_ObjectHideFlags: 0

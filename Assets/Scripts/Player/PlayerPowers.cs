@@ -6,11 +6,19 @@ public class PlayerPowers : MonoBehaviour
 {
     
     private Animator _animator;
-    
+    private bool isActiveStone;
+    private bool isActiveBridge;
+    private PlayerController _playerController;
+    public static PlayerPowers Instance { get; set; }
+    void Awake()
+    {
+        _playerController = GetComponent<PlayerController>();
+        Instance = this;
+    }
    /// <summary>
     /// Sin necesidad de orbes
     /// </summary>
-    private void basicAttack()
+    public void basicAttack()
     {
         
     }
@@ -18,7 +26,7 @@ public class PlayerPowers : MonoBehaviour
     /// <summary>
     /// - 2 orbes
     /// </summary>
-    private void Shell()
+    public void Shell()
     {
         
     }
@@ -26,7 +34,7 @@ public class PlayerPowers : MonoBehaviour
     /// <summary>
     /// - 4 orbes
     /// </summary>
-    private void magicSwordAttack()
+    public void magicSwordAttack()
     {
         
     }
@@ -34,7 +42,7 @@ public class PlayerPowers : MonoBehaviour
     /// <summary>
     ///  - 3 orbes
     /// </summary>
-    private void magicArrowAttack()
+    public void magicArrowAttack()
     {
         
     }
@@ -42,24 +50,51 @@ public class PlayerPowers : MonoBehaviour
     /// <summary>
     /// - 5 orbes
     /// </summary>
-    private void magicMoonAttack()
+    public void magicMoonAttack()
     {
         
     }
 
     /// <summary>
-    /// construccion es free
+    /// construccion -10 orbes
     /// </summary>
-    private void constructBridge()
+    public void constructBridge(GameObject bridges)
     {
-        
+        if (_playerController.counterOrbs >= 10 && isActiveStone)
+        {
+            //Faltará añadir la animación
+            bridges.SetActive(true);
+            _playerController.DiscountOrbs(10);
+        }
     }
     /// <summary>
-    /// construccion es free
+    /// mover -10 orbes
     /// </summary>
-    private void moveRocks()
+    public void moveRocks(GameObject stones)
     {
-        
+        if (_playerController.counterOrbs >= 10 && isActiveStone)
+        {
+            //Faltará añadir la animación
+            Destroy(stones);
+            _playerController.DiscountOrbs(10);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "stones")
+        {
+            isActiveStone = true;
+        }
+        if (other.gameObject.tag == "bridges")
+        {
+            isActiveBridge = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isActiveStone = false;
+        isActiveBridge = false;
     }
 
     

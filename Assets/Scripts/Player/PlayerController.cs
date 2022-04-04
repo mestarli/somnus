@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     
     
-    [SerializeField] private float counterOrbs = 100f;
+    public float counterOrbs = 100f;
 
     // Para la camara
     private float rotXCamera;
@@ -125,15 +125,7 @@ public class PlayerController : MonoBehaviour
     ///  /// <param name="enemy"></param>
     private void Damage(GameObject enemy)
     {
-        if(enemy.tag == "simple_orb")
-        {
-            counterOrbs += 1;
-            
-        }
-        if (enemy.tag == "extra_orb")
-        {
-            counterOrbs += 2;
-        }
+        
     }
 
     /// <summary>
@@ -176,7 +168,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "infinito")
         {
             SceneManager.LoadScene("GameOver");
-        }        if (other.gameObject.tag == "exit")
+        } 
+        if (other.gameObject.tag == "exit")
         {
             SceneManager.LoadScene("ToBeContinued");
         }
@@ -195,5 +188,11 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0, inputRot.x * sensibilityMouse,0f);
         // Vertical rotation camera
         playerCamera.transform.localRotation = Quaternion.Euler(rotXCamera, 0f, 0f);
+    }
+
+    public void DiscountOrbs(float orbs)
+    {
+        counterOrbs -= orbs;
+        UIManager.Instance.UpdateOrbs(counterOrbs.ToString());
     }
 }

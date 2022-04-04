@@ -46,4 +46,14 @@ public class UIManager : MonoBehaviour
     {
         countLife.fillAmount = life / maxlife;
     }
+
+    public void OnClickConstructBridge(GameObject bridges)
+    {
+        PlayerPowers.Instance.constructBridge(bridges);
+    }
+    
+    public void  OnClickMoveRocks(GameObject stones)
+    {
+        PlayerPowers.Instance.constructBridge(stones);
+    }
 }

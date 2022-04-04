@@ -9,6 +9,8 @@ TagManager:
   - weapon
   - infinito
   - exit
+  - bridge
+  - stones
   layers:
   - Default
   - TransparentFX
