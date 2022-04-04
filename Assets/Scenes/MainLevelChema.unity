@@ -6688,7 +6688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007308327}
   m_Layer: 0
-  m_Name: WayPointsI
+  m_Name: WayPointsIsla1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

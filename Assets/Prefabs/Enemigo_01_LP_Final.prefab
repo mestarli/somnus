@@ -1038,8 +1038,9 @@ GameObject:
   - component: {fileID: 4977219734815040342}
   - component: {fileID: 4977219734815040343}
   - component: {fileID: 4977219734815040344}
-  - component: {fileID: 4977219734815040340}
   - component: {fileID: 919132149409786741}
+  - component: {fileID: 880865164}
+  - component: {fileID: 1684137180}
   m_Layer: 0
   m_Name: Enemigo_01_LP_Final
   m_TagString: Untagged
@@ -1128,19 +1129,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &4977219734815040340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319818972860505611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 594bfd17b0613d34d869e853b0c8d6cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movePositionTransform: {fileID: 0}
 --- !u!195 &919132149409786741
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1163,6 +1151,56 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &880865164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319818972860505611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a6b2c1dfec552469bf7fa56313c3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  runSpeed: 4
+  player_mask:
+    serializedVersion: 2
+    m_Bits: 64
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeBetweenAttacks: 2
+  sightRange: 6
+  attackRange: 3
+--- !u!114 &1684137180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319818972860505611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a6b2c1dfec552469bf7fa56313c3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  runSpeed: 4
+  player_mask:
+    serializedVersion: 2
+    m_Bits: 64
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeBetweenAttacks: 2
+  sightRange: 6
+  attackRange: 3
 --- !u!1 &5338914445711785296
 GameObject:
   m_ObjectHideFlags: 0
