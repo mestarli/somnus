@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float life = 100f;
+    [SerializeField] private float maxLife = 100f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float speed = 8.5f;
     [SerializeField] private float speedRun = 15.5f;
@@ -24,13 +25,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     
     
-    [SerializeField] private float counterOrbs = 0;
+    [SerializeField] private float counterOrbs = 100f;
 
     // Para la camara
     private float rotXCamera;
-    [SerializeField]private Transform playerCamera;
+    [SerializeField] private Transform playerCamera;
     private Vector2 inputRot;
-    private float sensibilityMouse = 2f;
+    [SerializeField] private float sensibilityMouse = 2f;
 
     void Awake()
     {
@@ -44,6 +45,10 @@ public class PlayerController : MonoBehaviour
      
         // Get vertical camera rotation
         rotXCamera = playerCamera.eulerAngles.x;
+        
+        // Inicializamos UI
+        UIManager.Instance.UpdateOrbs(counterOrbs.ToString());
+        UIManager.Instance.UpdateLife(life, maxLife);
 
     }
 
@@ -66,7 +71,7 @@ public class PlayerController : MonoBehaviour
         
         //Get Player rotation from Mouse
         inputRot.x = Input.GetAxis("Mouse X") * sensibilityMouse;
-        inputRot.y = Input.GetAxis("Mouse Y") * sensibilityMouse;
+        //inputRot.y = Input.GetAxis("Mouse Y") * sensibilityMouse;
 
 
         //Method to update camera rotation
@@ -123,6 +128,7 @@ public class PlayerController : MonoBehaviour
         if(enemy.tag == "simple_orb")
         {
             counterOrbs += 1;
+            
         }
         if (enemy.tag == "extra_orb")
         {
@@ -144,6 +150,7 @@ public class PlayerController : MonoBehaviour
         {
             counterOrbs += 3;
         }
+        UIManager.Instance.UpdateOrbs(counterOrbs.ToString());
         Destroy(orb);
     }
     
@@ -169,8 +176,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "infinito")
         {
             SceneManager.LoadScene("GameOver");
-        }
-        if (other.gameObject.tag == "exit")
+        }        if (other.gameObject.tag == "exit")
         {
             SceneManager.LoadScene("ToBeContinued");
         }

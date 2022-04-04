@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public UIManager Instance { get; set; }
+    [SerializeField] private Text countOrbs;
+    [SerializeField] private Image countLife;
+    public static UIManager Instance { get; set; }
     
     void Awake()
     {
@@ -31,5 +35,15 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("MainLevel");
+    }
+
+    public void UpdateOrbs( string orbs)
+    {
+        countOrbs.text = orbs;
+    }
+
+    public void UpdateLife(float life,float maxlife)
+    {
+        countLife.fillAmount = life / maxlife;
     }
 }
