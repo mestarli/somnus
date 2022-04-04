@@ -57,8 +57,6 @@ public class PlayerController : MonoBehaviour
     {
         // comprobamos que esta tocando suelo, si no es así, es que está saltando
         isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
-       
-
     }
 
     void FixedUpdate()
@@ -187,7 +185,7 @@ public class PlayerController : MonoBehaviour
         // Horizontal rotation camera
         transform.Rotate(0, inputRot.x * sensibilityMouse,0f);
         // Vertical rotation camera
-        playerCamera.transform.localRotation = Quaternion.Euler(rotXCamera, 0f, 0f);
+        //playerCamera.transform.localRotation = Quaternion.Euler(rotXCamera, 0f, 0f);
     }
 
     public void DiscountOrbs(float orbs)

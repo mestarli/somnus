@@ -8,12 +8,32 @@ public class PlayerPowers : MonoBehaviour
     private Animator _animator;
     private bool isActiveStone;
     private bool isActiveBridge;
+    
+    [SerializeField] private GameObject stones;
+    [SerializeField] private GameObject bridge;
+
     private PlayerController _playerController;
     public static PlayerPowers Instance { get; set; }
     void Awake()
     {
         _playerController = GetComponent<PlayerController>();
         Instance = this;
+    }
+
+    void Update()
+    {
+        Debug.Log("Activa la habilidad de mover rocas"+isActiveStone);
+        Debug.Log("Activa la habilidad de activar puentes"+isActiveBridge);
+        //Apretar E para mover rocas
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            moveRocks(stones);
+        }
+        //Apretar R para hacer aparecer puentes
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            constructBridge(bridge);
+        }
     }
    /// <summary>
     /// Sin necesidad de orbes
@@ -60,7 +80,7 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void constructBridge(GameObject bridges)
     {
-        if (_playerController.counterOrbs >= 10 && isActiveStone)
+        if (_playerController.counterOrbs >= 10 && isActiveBridge && !bridges.active)
         {
             //Faltará añadir la animación
             bridges.SetActive(true);
@@ -72,7 +92,7 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void moveRocks(GameObject stones)
     {
-        if (_playerController.counterOrbs >= 10 && isActiveStone)
+        if (_playerController.counterOrbs >= 10 && isActiveStone && stones)
         {
             //Faltará añadir la animación
             Destroy(stones);
@@ -86,7 +106,7 @@ public class PlayerPowers : MonoBehaviour
         {
             isActiveStone = true;
         }
-        if (other.gameObject.tag == "bridges")
+        if (other.gameObject.tag == "bridge")
         {
             isActiveBridge = true;
         }

@@ -54,6 +54,6 @@ public class UIManager : MonoBehaviour
     
     public void  OnClickMoveRocks(GameObject stones)
     {
-        PlayerPowers.Instance.constructBridge(stones);
+        PlayerPowers.Instance.moveRocks(stones);
     }
 }
