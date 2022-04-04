@@ -2310,7 +2310,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754588124}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -3068,7 +3068,7 @@ PrefabInstance:
     - target: {fileID: -1862631217553117210, guid: 5b91976d6915f4e46a313eca139fa58c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e5550b4ee09189347967ebd25900796f, type: 2}
+      objectReference: {fileID: 2100000, guid: 93ca6b4d166c5d64588dbf33f56bad9a, type: 2}
     - target: {fileID: -1524802512379835637, guid: 5b91976d6915f4e46a313eca139fa58c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -3184,7 +3184,7 @@ PrefabInstance:
     - target: {fileID: 7199474534845518098, guid: 5b91976d6915f4e46a313eca139fa58c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 63319b78079040d4584e1efd4b1b0bdf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9029d3cd6692bf64092541689a602f97, type: 2}
     - target: {fileID: 7783033818548755314, guid: 5b91976d6915f4e46a313eca139fa58c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -4003,7 +4003,7 @@ PrefabInstance:
     - target: {fileID: -7147333197006155292, guid: b18acde2613e8734498dce88b3e50313, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 39f1212fb66c18647883817e800d75ff, type: 2}
+      objectReference: {fileID: 2100000, guid: 076c745e32608ae4aba9239c3c34bed3, type: 2}
     - target: {fileID: -7012496409268811732, guid: b18acde2613e8734498dce88b3e50313, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6935,6 +6935,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1712837252567370214, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
+      propertyPath: bridge
+      value: 
+      objectReference: {fileID: 1984908168}
+    - target: {fileID: 1712837252567370214, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
+      propertyPath: stones
+      value: 
+      objectReference: {fileID: 374901154}
+    - target: {fileID: 2538629062921887632, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
+      propertyPath: speed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538629062921887632, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
+      propertyPath: speedRun
+      value: 11.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2644102074044545095, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
       propertyPath: m_RootOrder
       value: 5
