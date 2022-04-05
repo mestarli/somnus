@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         // comprobamos que esta tocando suelo, si no es así, es que está saltando
         isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
+        Jump();
     }
 
     void FixedUpdate()
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
         
         _animator.SetBool("IsRunning", false);
         Movement();
-        Jump();
+       
         
         //Get Player rotation from Mouse
         inputRot.x = Input.GetAxis("Mouse X") * sensibilityMouse;

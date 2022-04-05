@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        Cursor.visible = false;
     }
     
     // Start is called before the first frame update
