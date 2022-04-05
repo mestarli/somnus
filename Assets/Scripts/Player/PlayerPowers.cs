@@ -17,13 +17,12 @@ public class PlayerPowers : MonoBehaviour
     void Awake()
     {
         _playerController = GetComponent<PlayerController>();
+        _animator = GetComponent<Animator>();
         Instance = this;
     }
 
     void Update()
     {
-        Debug.Log("Activa la habilidad de mover rocas"+isActiveStone);
-        Debug.Log("Activa la habilidad de activar puentes"+isActiveBridge);
         //Apretar E para mover rocas
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -34,14 +33,20 @@ public class PlayerPowers : MonoBehaviour
         {
             constructBridge(bridge);
         }
+        // Click derecho para el ataque basico
+        if (Input.GetMouseButtonDown(1))
+        {
+            basicAttack();
+        }
     }
    /// <summary>
     /// Sin necesidad de orbes
     /// </summary>
     public void basicAttack()
-    {
-        
-    }
+   {
+       Debug.Log("Ataque básico");
+       _animator.SetBool("IsAttacking", true);
+   }
 
     /// <summary>
     /// - 2 orbes
