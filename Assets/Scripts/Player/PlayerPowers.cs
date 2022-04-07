@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerPowers : MonoBehaviour
@@ -8,9 +9,11 @@ public class PlayerPowers : MonoBehaviour
     private Animator _animator;
     private bool isActiveStone;
     private bool isActiveBridge;
+    private bool isActiveShell;
     
     [SerializeField] private GameObject stones;
     [SerializeField] private GameObject bridge;
+    [SerializeField] private GameObject shell;
 
     private PlayerController _playerController;
     public static PlayerPowers Instance { get; set; }
@@ -38,6 +41,11 @@ public class PlayerPowers : MonoBehaviour
         {
             basicAttack();
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Shell();
+        }
     }
    /// <summary>
     /// Sin necesidad de orbes
@@ -49,11 +57,17 @@ public class PlayerPowers : MonoBehaviour
    }
 
     /// <summary>
-    /// - 2 orbes
+    /// - 2 orbes se desactiva pasado 
     /// </summary>
     public void Shell()
     {
-        
+        if (!isActiveShell)
+        {
+            shell.SetActive(true);
+            _playerController.DiscountOrbs(2);
+            StartCoroutine(countDownShell());
+        }   
+       
     }
 
     /// <summary>
@@ -122,5 +136,15 @@ public class PlayerPowers : MonoBehaviour
         isActiveBridge = false;
     }
 
-    
+    private void resetAnimationAttack()
+    {
+        _animator.SetBool("IsAttacking", false);
+    }
+
+
+    IEnumerator countDownShell()
+    {
+        yield return new WaitForSeconds(2f);
+        shell.SetActive(false);
+    }
 }
