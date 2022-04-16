@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text countOrbs;
     [SerializeField] private Image countLife;
+    [SerializeField] private GameObject _camera;
+    [SerializeField] private GameObject UIPanelStart;
     public static UIManager Instance { get; set; }
     
     void Awake()
@@ -32,7 +34,12 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void StartNewGame()
+    {
+        Animation anim = _camera.GetComponent<Animation>();
+        anim.Play("StartGame");
+        UIPanelStart.SetActive(false);
+    }
     public void StartGame()
     {
         SceneManager.LoadScene("MainLevel");
@@ -56,5 +63,10 @@ public class UIManager : MonoBehaviour
     public void  OnClickMoveRocks(GameObject stones)
     {
         PlayerPowers.Instance.moveRocks(stones);
+    }
+
+    public void ShowInstructions(GameObject panel)
+    {
+        panel.active = !panel.active;
     }
 }
