@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_AuroraBoreal
+  m_Name: Shader Graphs_AuroraBoreal_02
   m_Shader: {fileID: -6465566751694194690, guid: f5429ff84ccc77946a4729d1cd03b859, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -50,13 +50,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolvePower: 2.4
-    - _MaskPower: -0.11
+    - _DissolvePower: 1.1
+    - _MaskPower: 0.42
     - _NoiseScale: 32.41
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.4811321, b: 0.023863293, a: 1}
+    - _Color: {r: 0.5188679, g: 0.012237449, b: 0.30665562, a: 1}
     - _NoiseSpeed: {r: 0.03, g: 0.03, b: 0, a: 0}
-    - _NoiseTiling: {r: 2.77, g: -0.37, b: 0, a: 0}
+    - _NoiseTiling: {r: 2.77, g: -0.03, b: 0, a: 0}
   m_BuildTextureStacks: []
