@@ -1587,6 +1587,7 @@ MonoBehaviour:
   stones: {fileID: 0}
   bridge: {fileID: 0}
   shell: {fileID: 3457194957412545161}
+  triggerAttack: {fileID: 0}
   isMakingActions: 0
 --- !u!1 &3579927299153356865
 GameObject:
@@ -3321,7 +3322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f79f1f961d53874190b536439161bed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f79f1f961d53874190b536439161bed, type: 3}
