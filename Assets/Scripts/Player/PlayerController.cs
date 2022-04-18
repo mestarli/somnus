@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float jumHeight = 3.5f;
 
-    [SerializeField] private bool isGrounded;
+    public bool isGrounded;
     [SerializeField] private bool isJumping;
     
     private Animator _animator;
@@ -62,7 +62,10 @@ public class PlayerController : MonoBehaviour
     {
         // comprobamos que esta tocando suelo, si no es así, es que está saltando
         isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
-        Jump();
+        if (!PlayerPowers.Instance.isMakingActions)
+        {
+            Jump();
+        }
     }
 
     void FixedUpdate()
@@ -70,7 +73,10 @@ public class PlayerController : MonoBehaviour
         // Llamamos funcionalidades para moverse, correr, saltar...
         
         _animator.SetBool("IsRunning", false);
-        Movement();
+        if (!PlayerPowers.Instance.isMakingActions)
+        {
+            Movement();
+        }
        
         
         //Get Player rotation from Mouse
@@ -177,6 +183,34 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "exit")
         {
             SceneManager.LoadScene("ToBeContinued");
+        }
+
+        //El ataque melee quita 5
+        if (other.gameObject.tag == "enemy_melee_attack")
+        {
+            restarVida(5f);
+        }
+        
+        //El ataque magico quita 10
+        if (other.gameObject.tag == "enemy_magic_attack")
+        {
+            restarVida(10f);
+        }
+        
+        //El chocarse con enemigos quita 1
+        if (other.gameObject.tag == "enemy")
+        {
+            restarVida(1f);
+        }
+        
+    }
+
+    public void restarVida(float restar_vida)
+    {
+        life -= restar_vida;
+        if (life <= 0) ;
+        {
+            //SceneManager.LoadScene("GameOver");
         }
     }
     

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemigo_AI : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float life = 20f;
     [SerializeField] private float runSpeed;
     [SerializeField] private LayerMask player_mask;
     private NavMeshAgent _navMeshAgent;
@@ -19,7 +20,8 @@ public class Enemigo_AI : MonoBehaviour
     //Ataque
     [SerializeField] public float timeBetweenAttacks;
     private bool alreadyAttaked;
-    
+    private bool isTakingDamage;
+    [SerializeField] public GameObject colliderAttack;
     
     //Estados
     [SerializeField] public float sightRange, attackRange;
@@ -122,12 +124,13 @@ public class Enemigo_AI : MonoBehaviour
         //Miramos haciea el player mientras atacamos
         transform.LookAt(player);
 
-        if (!alreadyAttaked)
+        if (!alreadyAttaked && !isTakingDamage)
         {
             alreadyAttaked = true;
+            colliderAttack.active = true;
             //Invocamos el trigger para reproducir la animación de ataque
             _animator.SetTrigger("isAttacking");
-            
+            _animator.SetBool("isChassing", false);
             // Volvemos a dejar atacar al enemigo despues del tiempo definido
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -139,7 +142,59 @@ public class Enemigo_AI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttaked = false;
+        colliderAttack.active = false;
     }
 
+    public void ResetChassing()
+    {
+        _animator.SetBool("isChassing", true);
+    }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("El enemigo ha colisionado"+other.gameObject.tag);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("El trigger es"+other.gameObject.tag);
+        // el ataque básico quita 2 de vida
+        if (other.gameObject.tag == "weapon")
+        {
+            restarVida(2f);
+        }
+        // los ataques mágicos 5
+        if (other.gameObject.tag == "magic_attack")
+        {
+            restarVida(5f);
+        }
+    }
+    public void restarVida(float restar_vida)
+    {
+        life -= restar_vida;
+        if (life <= 0) 
+        {
+            //Animacion de morir
+            isTakingDamage = true;
+            _animator.SetTrigger("Die");
+            //Destroy(gameObject);
+        }else
+        {
+            isTakingDamage = true;
+            _animator.SetBool("isChassing", false);
+            _animator.SetTrigger("Damage");
+        }
+    }
+
+    /// <summary>
+    /// Método para el trigger de cuando acaba la animación de morrir
+    /// </summary>
+    public void destroyEnemy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void resetDamage()
+    {
+        isTakingDamage = false;
+    }
 }

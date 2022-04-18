@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
@@ -14,8 +15,13 @@ public class PlayerPowers : MonoBehaviour
     [SerializeField] private GameObject stones;
     [SerializeField] private GameObject bridge;
     [SerializeField] private GameObject shell;
+    [SerializeField] private GameObject triggerAttack;
 
     private PlayerController _playerController;
+
+    public bool isMakingActions;
+    //variables to melee attack
+    
     public static PlayerPowers Instance { get; set; }
     void Awake()
     {
@@ -27,22 +33,26 @@ public class PlayerPowers : MonoBehaviour
     void Update()
     {
         //Apretar E para mover rocas
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && _playerController.isGrounded)
         {
+            isMakingActions = true;
             moveRocks(stones);
         }
         //Apretar R para hacer aparecer puentes
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && _playerController.isGrounded)
         {
+            isMakingActions = true;
             constructBridge(bridge);
         }
         // Click derecho para el ataque basico
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && _playerController.isGrounded)
         {
+            isMakingActions = true;
+            triggerAttack.active = true;
             basicAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) && _playerController.isGrounded)
         {
             Shell();
         }
@@ -104,6 +114,7 @@ public class PlayerPowers : MonoBehaviour
             //Faltará añadir la animación
             bridges.SetActive(true);
             _playerController.DiscountOrbs(10);
+            isMakingActions = false;
         }
     }
     /// <summary>
@@ -116,6 +127,7 @@ public class PlayerPowers : MonoBehaviour
             //Faltará añadir la animación
             Destroy(stones);
             _playerController.DiscountOrbs(10);
+            isMakingActions = false;
         }
     }
 
@@ -139,6 +151,8 @@ public class PlayerPowers : MonoBehaviour
     private void resetAnimationAttack()
     {
         _animator.SetBool("IsAttacking", false);
+        triggerAttack.active = false;
+        isMakingActions = false;
     }
 
 
@@ -146,5 +160,6 @@ public class PlayerPowers : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         shell.SetActive(false);
+        isMakingActions = false;
     }
 }

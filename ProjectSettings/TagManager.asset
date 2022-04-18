@@ -11,6 +11,8 @@ TagManager:
   - exit
   - bridge
   - stones
+  - enemy_melee_attack
+  - enemy
   layers:
   - Default
   - TransparentFX
