@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 88315188}
   - component: {fileID: 88315194}
   m_Layer: 0
-  m_Name: Enemigo_02_LP_Final
+  m_Name: Enemigo_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

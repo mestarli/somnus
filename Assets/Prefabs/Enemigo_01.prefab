@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 919132149409786741}
   - component: {fileID: 880865164}
   m_Layer: 0
-  m_Name: Enemigo_01_LP_Final
+  m_Name: Enemigo_01
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
