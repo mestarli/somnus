@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402069440}
   m_LocalRotation: {x: -0.06672264, y: -0, z: -0, w: 0.99777156}
-  m_LocalPosition: {x: 0.17, y: 2.87, z: -9.07}
+  m_LocalPosition: {x: 0.17, y: 2.92, z: -9.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1406,7 +1406,7 @@ GameObject:
   - component: {fileID: 3457194958085956350}
   - component: {fileID: 7412675203355080136}
   - component: {fileID: 1712837252567370214}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1483,8 +1483,8 @@ MonoBehaviour:
   life: 100
   maxLife: 100
   gravity: -9.81
-  speed: 4.5
-  speedRun: 8.5
+  speed: 6.5
+  speedRun: 11.5
   jumHeight: 10.5
   isGrounded: 1
   isJumping: 0
@@ -1495,6 +1495,10 @@ MonoBehaviour:
   counterOrbs: 100
   playerCamera: {fileID: 402069443}
   sensibilityMouse: 2
+  stepRayUpper: {fileID: 0}
+  stepRayLower: {fileID: 0}
+  stepHeight: 0.3
+  stepSmooth: 2
 --- !u!65 &3457194958085956350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1538,6 +1542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stones: {fileID: 0}
   bridge: {fileID: 0}
+  shell: {fileID: 0}
 --- !u!1 &3579927299153356865
 GameObject:
   m_ObjectHideFlags: 0
