@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4100740278715692758}
   - component: {fileID: 8273099728301308423}
   - component: {fileID: 5919081204487924389}
+  - component: {fileID: 7084253712276057846}
   m_Layer: 0
   m_Name: Tocon_1
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759798755606285732}
-  m_LocalRotation: {x: 0.16428289, y: 0.68775815, z: 0.687758, w: -0.16428287}
+  m_LocalRotation: {x: -0.1642847, y: -0.6877577, z: -0.6877577, w: 0.1642847}
   m_LocalPosition: {x: -137.77565, y: -0.7420023, z: 155.57497}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -153.131}
 --- !u!33 &8273099728301308423
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e55d0acef2f43142a42119314becd19, type: 2}
+  - {fileID: 2100000, guid: e781392534c3f384b82da487f122dd69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7084253712276057846
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759798755606285732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8937504596867145713, guid: 2e8e5bc37f32b834aab831bb0e2eb63a, type: 3}
