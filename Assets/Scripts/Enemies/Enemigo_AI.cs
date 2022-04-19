@@ -18,14 +18,17 @@ public class Enemigo_AI : MonoBehaviour
     private int currentWaypointIndex;
     
     //Ataque
-    [SerializeField] public float timeBetweenAttacks;
+    [SerializeField] private float timeBetweenAttacks;
     private bool alreadyAttaked;
     private bool isTakingDamage;
-    [SerializeField] public GameObject colliderAttack;
+    [SerializeField] private GameObject colliderAttack;
     
     //Estados
     [SerializeField] public float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
+    
+    //Drop de bola
+    [SerializeField] private GameObject orbeSpawn;
 
 
     private void Awake()
@@ -190,7 +193,19 @@ public class Enemigo_AI : MonoBehaviour
     /// </summary>
     public void destroyEnemy()
     {
+        Instantiate(orbeSpawn, transform.position, orbeSpawn.transform.rotation);
+        
+        //Si toca un número random entre 0 y 50, creamos otro orbe
+        int rand = Random.Range(0, 100);
+        if (rand <= 50)
+        {
+            Vector3 newPosition = transform.position;
+            newPosition.x += 1.5f;
+            Instantiate(orbeSpawn, newPosition , orbeSpawn.transform.rotation);
+
+        }
         Destroy(gameObject);
+        
     }
 
     public void resetDamage()

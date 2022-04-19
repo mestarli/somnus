@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402069440}
-  m_LocalRotation: {x: -0.06672264, y: -0, z: -0, w: 0.99777156}
-  m_LocalPosition: {x: 0.17, y: 2.92, z: -9.08}
+  m_LocalRotation: {x: -0.018123277, y: -0, z: -0, w: 0.9998358}
+  m_LocalPosition: {x: 0.17, y: 5.5, z: -13.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2644102074044545095}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -7.652, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.077, y: 0, z: 0}
 --- !u!20 &402069442
 Camera:
   m_ObjectHideFlags: 0
@@ -1587,7 +1587,7 @@ MonoBehaviour:
   stones: {fileID: 0}
   bridge: {fileID: 0}
   shell: {fileID: 3457194957412545161}
-  triggerAttack: {fileID: 0}
+  triggerAttack: {fileID: 4580751434953220284}
   isMakingActions: 0
 --- !u!1 &3579927299153356865
 GameObject:
@@ -2029,8 +2029,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3835654, y: 3.3143306, z: 0.3306682}
-  m_Center: {x: 0.3082182, y: 0.7615398, z: -0.05495368}
+  m_Size: {x: 0.5846479, y: 4.0796437, z: 0.6985413}
+  m_Center: {x: 0.40875995, y: 1.1441963, z: -0.020851504}
 --- !u!114 &1192827577
 MonoBehaviour:
   m_ObjectHideFlags: 0
