@@ -33,10 +33,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 inputRot;
     [SerializeField] private float sensibilityMouse = 2f;
     
-    
-    //for steps
-    [SerializeField] float stepHeight = 0.3f;
-    [SerializeField] float stepSmooth = 2f;
 
     void Awake()
     {
@@ -107,6 +103,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
             
             _rigidbody.AddForce(jumHeight * Vector3.up, ForceMode.VelocityChange);
+            _animator.SetTrigger("IsJumping");
         }
         //_animator.SetBool("IsJumping", isGrounded);
         
