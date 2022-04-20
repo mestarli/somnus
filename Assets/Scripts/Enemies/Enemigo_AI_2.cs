@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemigo_AI : MonoBehaviour
+public class Enemigo_AI_2 : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float life = 20f;
@@ -21,15 +21,22 @@ public class Enemigo_AI : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks;
     private bool alreadyAttaked;
     private bool isTakingDamage;
-    [SerializeField] private GameObject colliderAttack;
-    
+
     //Estados
     [SerializeField] public float sightRange, attackRange;
     private bool playerInSightRange, playerInAttackRange;
     
     //Drop de bola
     [SerializeField] private GameObject orbeSpawn;
+    [SerializeField] private GameObject orbeDobleSpawn;
 
+
+    
+    //Para los ataques mágicos
+    [SerializeField] private float bulletForce;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject spawnProjectile;
+    [SerializeField] private Rigidbody _rigidbody;
 
     private void Awake()
     {
@@ -83,11 +90,7 @@ public class Enemigo_AI : MonoBehaviour
     {
         // Decimos donde tiene que ir el enemigo
         _navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
-        
-        // Asignamos de nuestro animator que animación tiene que reproducir el enemigo
-        _animator.SetBool("isPatrolling", true);
-        _animator.SetBool("isChassing", false);
-        
+
         // Asignamos la velocidad correspondiente al estado de patrulla
         _navMeshAgent.speed = this.speed;
         
@@ -105,10 +108,6 @@ public class Enemigo_AI : MonoBehaviour
 
     private void Perseguir()
     {
-        //Asignamos la animación del Animator que tiene que reproducir
-        _animator.SetBool("isPatrolling", false);
-        _animator.SetBool("isChassing", true);
-        
         //Indicamos donde está el player para que le persiga
         _navMeshAgent.SetDestination(player.position);
         
@@ -130,10 +129,11 @@ public class Enemigo_AI : MonoBehaviour
         if (!alreadyAttaked && !isTakingDamage)
         {
             alreadyAttaked = true;
-            colliderAttack.active = true;
-            //Invocamos el trigger para reproducir la animación de ataque
-            _animator.SetTrigger("isAttacking");
-            _animator.SetBool("isChassing", false);
+            
+            
+            GameObject newBullet = Instantiate(projectile, spawnProjectile.transform.position, Quaternion.identity);
+            newBullet.GetComponent<Rigidbody>().AddForce(spawnProjectile.transform.forward * 600);
+            
             // Volvemos a dejar atacar al enemigo despues del tiempo definido
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -145,12 +145,11 @@ public class Enemigo_AI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttaked = false;
-        colliderAttack.active = false;
     }
 
     public void ResetChassing()
     {
-        _animator.SetBool("isChassing", true);
+        //_animator.SetBool("isChassing", true);
     }
     
     private void OnTriggerEnter(Collider other)
@@ -172,14 +171,10 @@ public class Enemigo_AI : MonoBehaviour
         if (life <= 0) 
         {
             //Animacion de morir
-            isTakingDamage = true;
-            _animator.SetTrigger("Die");
-            //Destroy(gameObject);
+            destroyEnemy();
         }else
         {
             isTakingDamage = true;
-            _animator.SetBool("isChassing", false);
-            _animator.SetTrigger("Damage");
         }
     }
 
@@ -196,7 +191,7 @@ public class Enemigo_AI : MonoBehaviour
         {
             Vector3 newPosition = transform.position;
             newPosition.x += 1.5f;
-            Instantiate(orbeSpawn, newPosition , orbeSpawn.transform.rotation);
+            Instantiate(orbeDobleSpawn, newPosition , orbeSpawn.transform.rotation);
 
         }
         Destroy(gameObject);
@@ -207,4 +202,5 @@ public class Enemigo_AI : MonoBehaviour
     {
         isTakingDamage = false;
     }
+    
 }

@@ -191,6 +191,7 @@ public class PlayerController : MonoBehaviour
         //El ataque magico quita 10
         if (other.gameObject.tag == "enemy_magic_attack")
         {
+            Destroy(other.gameObject);
             restarVida(10f);
         }
         
