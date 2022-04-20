@@ -12,27 +12,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedRun = 15.5f;
     private float initialSpeed;
     private Rigidbody _rigidbody;
-    
+
     [SerializeField] private float jumHeight = 3.5f;
 
     public bool isGrounded;
     [SerializeField] private bool isJumping;
-    
+
     private Animator _animator;
-    
+
     //For check if its toching ground
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    
-    
+
+
     public float counterOrbs = 100f;
+    
 
     // Para la camara
     private float rotXCamera;
     [SerializeField] private Transform playerCamera;
     private Vector2 inputRot;
     [SerializeField] private float sensibilityMouse = 2f;
-    
+
 
     void Awake()
     {
@@ -40,13 +41,14 @@ public class PlayerController : MonoBehaviour
         initialSpeed = speed;
         _rigidbody = GetComponent<Rigidbody>();
     }
+
     // Start is called before the first frame update
     void Start()
     {
-     
+
         // Get vertical camera rotation
         rotXCamera = playerCamera.eulerAngles.x;
-        
+
         // Inicializamos UI
         UIManager.Instance.UpdateOrbs(counterOrbs.ToString());
         UIManager.Instance.UpdateLife(life, maxLife);
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // comprobamos que esta tocando suelo, si no es así, es que está saltando
-        isGrounded  = Physics.CheckSphere(groundCheck.position,0.15f,groundLayer);
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.15f, groundLayer);
         if (!PlayerPowers.Instance.isMakingActions)
         {
             Jump();
@@ -67,47 +69,52 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Llamamos funcionalidades para moverse, correr, saltar...
-        
+
         _animator.SetBool("IsRunning", false);
         _animator.SetBool("IsWalking", false);
         if (!PlayerPowers.Instance.isMakingActions)
         {
-            if (Input.GetKey(KeyCode.A) ||Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.W) ||
+                Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
                 _animator.SetBool("IsWalking", true);
             }
+
             Movement();
         }
-       
-        
+
+
         //Get Player rotation from Mouse
         inputRot.x = Input.GetAxis("Mouse X") * sensibilityMouse;
 
         //Method to update camera rotation
         MovePlayerCamera();
-        
-        
+
+
     }
+
     private void Movement()
     {
-        float xMove = Input.GetAxisRaw("Horizontal"); 
+        float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
         //Movement of player
-        _rigidbody.velocity = transform.forward * speed *  zMove // Forward, Backward movement of player
-                              + transform.right * speed * xMove   // Left, Right Movement of player
+        _rigidbody.velocity = transform.forward * speed * zMove // Forward, Backward movement of player
+                              + transform.right * speed * xMove // Left, Right Movement of player
                               + new Vector3(0, _rigidbody.velocity.y, 0);
         Run();
     }
+
     private void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
-            
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+
             _rigidbody.AddForce(jumHeight * Vector3.up, ForceMode.VelocityChange);
             _animator.SetTrigger("IsJumping");
         }
         //_animator.SetBool("IsJumping", isGrounded);
-        
-   }
+
+    }
 
     /// <summary>
     /// Método para correr
@@ -115,43 +122,45 @@ public class PlayerController : MonoBehaviour
     private void Run()
     {
         bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-        if(isShiftKeyDown)
+        if (isShiftKeyDown)
         {
             speed = speedRun;
             _animator.SetBool("IsRunning", isShiftKeyDown);
-           
+
         }
         else
         {
             speed = initialSpeed;
         }
     }
-    
+
     /// <summary>
     /// Método para recolectar orbes que subirán nuestra energia
     /// </summary>
     /// <param name="orb"></param>
     private void recollectOrb(GameObject orb)
     {
-        if(orb.tag == "simple_orb")
+        if (orb.tag == "simple_orb")
         {
             counterOrbs += 1;
         }
+
         if (orb.tag == "extra_orb")
         {
             counterOrbs += 3;
         }
+
         UIManager.Instance.UpdateOrbs(counterOrbs.ToString());
         Destroy(orb);
     }
-    
+
     /// <summary>
     /// Detectamos colisiones para llamar a una función determinada
     /// </summary>
     /// <param name="other"></param>
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag.Contains("orb"))
+        if (other.gameObject.tag.Contains("orb"))
         {
             recollectOrb(other.gameObject);
         }
@@ -161,13 +170,14 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "infinito")
         {
             SceneManager.LoadScene("GameOver");
-        } 
+        }
+
         if (other.gameObject.tag == "exit")
         {
             SceneManager.LoadScene("ToBeContinued");
@@ -178,31 +188,42 @@ public class PlayerController : MonoBehaviour
         {
             restarVida(5f);
         }
-        
+
         //El ataque magico quita 10
         if (other.gameObject.tag == "enemy_magic_attack")
         {
             Destroy(other.gameObject);
             restarVida(10f);
         }
-        
+
         //El chocarse con enemigos quita 1
         if (other.gameObject.tag == "enemy")
         {
             restarVida(1f);
         }
-        
+
     }
 
     public void restarVida(float restar_vida)
     {
         life -= restar_vida;
-        if (life <= 0) ;
+        PlayerPowers.Instance.isMakingActions = true;
+        if (life <= 0)
         {
-            //SceneManager.LoadScene("GameOver");
+            
+            _animator.SetTrigger("Die");
+        }
+        else
+        {
+            _animator.SetTrigger("Damage");
         }
     }
-    
+
+    public void showGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
     /// <summary>
     /// Metodo para la rotacion de la camara
     /// </summary>
