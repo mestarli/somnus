@@ -69,16 +69,19 @@ public class PlayerController : MonoBehaviour
         // Llamamos funcionalidades para moverse, correr, saltar...
         
         _animator.SetBool("IsRunning", false);
+        _animator.SetBool("IsWalking", false);
         if (!PlayerPowers.Instance.isMakingActions)
         {
+            if (Input.GetKey(KeyCode.A) ||Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            {
+                _animator.SetBool("IsWalking", true);
+            }
             Movement();
         }
        
         
         //Get Player rotation from Mouse
         inputRot.x = Input.GetAxis("Mouse X") * sensibilityMouse;
-        //inputRot.y = Input.GetAxis("Mouse Y") * sensibilityMouse;
-
 
         //Method to update camera rotation
         MovePlayerCamera();
@@ -89,9 +92,6 @@ public class PlayerController : MonoBehaviour
     {
         float xMove = Input.GetAxisRaw("Horizontal"); 
         float zMove = Input.GetAxisRaw("Vertical");
-        _animator.SetFloat("Walking", Mathf.Abs(xMove));
-        _animator.SetFloat("Walking", Mathf.Abs(zMove));
-        
         //Movement of player
         _rigidbody.velocity = transform.forward * speed *  zMove // Forward, Backward movement of player
                               + transform.right * speed * xMove   // Left, Right Movement of player
@@ -126,16 +126,7 @@ public class PlayerController : MonoBehaviour
             speed = initialSpeed;
         }
     }
-
-    /// <summary>
-    /// Método que descuenta el daño, según el enemigo
-    /// </summary>
-    ///  /// <param name="enemy"></param>
-    private void Damage(GameObject enemy)
-    {
-        
-    }
-
+    
     /// <summary>
     /// Método para recolectar orbes que subirán nuestra energia
     /// </summary>

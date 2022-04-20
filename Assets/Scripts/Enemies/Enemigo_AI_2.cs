@@ -136,6 +136,8 @@ public class Enemigo_AI_2 : MonoBehaviour
             
             // Volvemos a dejar atacar al enemigo despues del tiempo definido
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
+            Destroy(newBullet, 2.0f);
         }
 
     }
@@ -202,5 +204,4 @@ public class Enemigo_AI_2 : MonoBehaviour
     {
         isTakingDamage = false;
     }
-    
 }

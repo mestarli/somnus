@@ -1529,9 +1529,9 @@ MonoBehaviour:
   life: 100
   maxLife: 100
   gravity: -9.81
-  speed: 6.5
-  speedRun: 11.5
-  jumHeight: 10.5
+  speed: 8.5
+  speedRun: 12.5
+  jumHeight: 6
   isGrounded: 1
   isJumping: 0
   groundCheck: {fileID: 2538629063861707514}
@@ -1541,8 +1541,6 @@ MonoBehaviour:
   counterOrbs: 100
   playerCamera: {fileID: 402069443}
   sensibilityMouse: 2
-  stepHeight: 0.3
-  stepSmooth: 2
 --- !u!65 &3457194958085956350
 BoxCollider:
   m_ObjectHideFlags: 0
