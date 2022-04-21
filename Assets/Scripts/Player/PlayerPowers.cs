@@ -42,6 +42,12 @@ public class PlayerPowers : MonoBehaviour
 
     [SerializeField] private GameObject baston;
     [SerializeField] private GameObject espada;
+    
+    
+    //Para los ataques mágicos de la luna
+    [SerializeField] private float bulletForce;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject spawnProjectile;
     public static PlayerPowers Instance { get; set; }
     void Awake()
     {
@@ -80,6 +86,10 @@ public class PlayerPowers : MonoBehaviour
         {
             Shell();
         }
+        if (Input.GetKeyDown(KeyCode.F) && _playerController.isGrounded)
+        {
+            magicMoonAttack();
+        }
     }
    /// <summary>
     /// Sin necesidad de orbes
@@ -117,6 +127,7 @@ public class PlayerPowers : MonoBehaviour
             isMakingActions = true;
             callCoroutineUI(espadaUI);
             _animator.SetBool("IsMagicAttack", true);
+            _playerController.DiscountOrbs(4);
         }
     }
     
@@ -129,21 +140,27 @@ public class PlayerPowers : MonoBehaviour
     }
 
     /// <summary>
-    ///  - 3 orbes
-    /// </summary>
-    public void magicArrowAttack()
-    {
-        
-    }
-    
-    /// <summary>
-    /// - 5 orbes
+    /// - 4 orbes
     /// </summary>
     public void magicMoonAttack()
     {
-        
+        if(_playerController.counterOrbs >=4)
+        {
+            isMakingActions = true;
+            callCoroutineUI(LunaUI);
+            _animator.SetTrigger("IsSpelling");
+            StartCoroutine(spellMoon());
+        }
     }
 
+    IEnumerator spellMoon()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject newBullet = Instantiate(projectile, spawnProjectile.transform.position, Quaternion.identity);
+        newBullet.GetComponent<Rigidbody>().AddForce(spawnProjectile.transform.forward * 600);
+        Destroy(newBullet, 2.0f);
+        _playerController.DiscountOrbs(4);
+    }
     /// <summary>
     /// construccion -10 orbes
     /// </summary>

@@ -1136,7 +1136,7 @@ Transform:
   m_Children:
   - {fileID: 8106126803006963881}
   m_Father: {fileID: 2751681568511446979}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2538629063861707515
 GameObject:
@@ -1599,6 +1599,9 @@ MonoBehaviour:
   _dissolveSpeed: 0.62
   baston: {fileID: 3457194957660878821}
   espada: {fileID: 6547764323446576641}
+  bulletForce: 10
+  projectile: {fileID: 6654992628445456278, guid: a21b43101d4e4694a992d9d37976cc01, type: 3}
+  spawnProjectile: {fileID: 7724681080269130416}
 --- !u!1 &3579927299153356865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,6 +2917,37 @@ Transform:
   m_Father: {fileID: 4219496152126120036}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7724681080269130416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5616602671093047658}
+  m_Layer: 0
+  m_Name: PointLuna
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5616602671093047658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7724681080269130416}
+  m_LocalRotation: {x: -0, y: -0.29628122, z: -0, w: 0.9551008}
+  m_LocalPosition: {x: -1.9, y: 1.23, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2751681568511446979}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -50.869, y: -34.469, z: 137.491}
 --- !u!1 &7809131063122174568
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,6 +3134,7 @@ Transform:
   m_Children:
   - {fileID: 192894992678166360}
   - {fileID: 8743580455623312318}
+  - {fileID: 5616602671093047658}
   - {fileID: 4685900237668230705}
   m_Father: {fileID: 3716784415785222056}
   m_RootOrder: 0
