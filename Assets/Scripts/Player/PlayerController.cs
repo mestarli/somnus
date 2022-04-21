@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform playerCamera;
     private Vector2 inputRot;
     [SerializeField] private float sensibilityMouse = 2f;
+    
+    [SerializeField] private AudioSource pisadas;
+    [SerializeField] private AudioSource correr;
+    [SerializeField] private AudioSource magia;
+    [SerializeField] private AudioSource golpe;
 
 
     void Awake()
@@ -254,5 +259,34 @@ public class PlayerController : MonoBehaviour
         counterOrbs -= orbs;
         UIManager.Instance.UpdateOrbs(counterOrbs.ToString());
     }
+
+    public void sonarPisadas()
+    {
+        pisadas.Play();
+    }
     
+    public void QuitarPisadas()
+    {
+        pisadas.Stop();
+    }
+
+    public void sonarCorrer()
+    {
+        correr.Play();
+    }
+    
+    public void sonarMagia()
+    {
+        magia.Play();
+    }
+
+    public void sonarGolpe()
+    {
+        golpe.Play();
+    }
+
+    public void QuitarCorrer()
+    {
+        correr.Stop();
+    }
 }
