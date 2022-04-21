@@ -26,9 +26,19 @@ public class PlayerPowers : MonoBehaviour
 
     private PlayerController _playerController;
 
+    [SerializeField] private Material SphereMaterial_Stone;
+    [SerializeField] private Material SphereMaterial_Stone_02;
     public bool isMakingActions;
     //variables to melee attack
     
+    
+    //Para los materiales de disolver
+    private bool isDissolving;
+
+    private float _dissolveValue;
+    private float _valueStart = 1;
+    private float _valueEnd = 0;
+    [SerializeField] private float _dissolveSpeed;
     public static PlayerPowers Instance { get; set; }
     void Awake()
     {
@@ -42,13 +52,11 @@ public class PlayerPowers : MonoBehaviour
         //Apretar E para mover rocas
         if (Input.GetKeyDown(KeyCode.E) && _playerController.isGrounded)
         {
-            isMakingActions = true;
             moveRocks(stones);
         }
         //Apretar R para hacer aparecer puentes
         if (Input.GetKeyDown(KeyCode.R) && _playerController.isGrounded)
         {
-            isMakingActions = true;
             constructBridge(bridge);
         }
         // Click derecho para el ataque basico
@@ -80,6 +88,7 @@ public class PlayerPowers : MonoBehaviour
     {
         if (!isActiveShell && _playerController.counterOrbs >=2)
         {
+            isMakingActions = true;
             shell.SetActive(true);
             callCoroutineUI(EscudoUI);
             _playerController.DiscountOrbs(2);
@@ -120,10 +129,10 @@ public class PlayerPowers : MonoBehaviour
         if (_playerController.counterOrbs >= 2 && isActiveBridge && !bridges.active)
         {
             //Faltará añadir la animación
+            isMakingActions = true;
             callCoroutineUI(PuenteUI);
             bridges.SetActive(true);
             _playerController.DiscountOrbs(2);
-            isMakingActions = false;
         }
     }
     /// <summary>
@@ -133,12 +142,73 @@ public class PlayerPowers : MonoBehaviour
     {
         if (_playerController.counterOrbs >= 2 && isActiveStone && stones)
         {
+            isMakingActions = true;
             //Faltará añadir la animación
+            _animator.SetTrigger("IsSpelling");
             callCoroutineUI(RocasUI);
-            Destroy(stones);
+            
+            MeshRenderer meshRenderer = stones.gameObject.transform.GetChild(0).GetComponent<MeshRenderer>();
+            // Set the new material on the GameObject
+            meshRenderer.material = SphereMaterial_Stone;
+            MeshRenderer meshRenderer2 = stones.gameObject.transform.GetChild(1).GetComponent<MeshRenderer>();
+            // Set the new material on the GameObject
+            meshRenderer2.material = SphereMaterial_Stone;
+            MeshRenderer meshRenderer3 = stones.gameObject.transform.GetChild(2).GetComponent<MeshRenderer>();
+            // Set the new material on the GameObject
+            meshRenderer3.material = SphereMaterial_Stone_02;
+            MeshRenderer meshRenderer4 = stones.gameObject.transform.GetChild(3).GetComponent<MeshRenderer>();
+            // Set the new material on the GameObject
+            meshRenderer4.material = SphereMaterial_Stone_02;
+            
+            MeshRenderer meshRenderer5 = stones.gameObject.transform.GetChild(4).GetComponent<MeshRenderer>();
+            // Set the new material on the GameObject
+            meshRenderer5.material = SphereMaterial_Stone;
+            
+            StartCoroutine(DissolveRocks());
+            StartCoroutine(DissolveRocks02());
+            //Destroy(stones);
             _playerController.DiscountOrbs(2);
-            isMakingActions = false;
         }
+    }
+
+    private IEnumerator DissolveRocks()
+    {
+            isDissolving = true;
+
+            _dissolveValue = _valueStart;
+
+            while(_dissolveValue > _valueEnd)
+            {
+                _dissolveValue -= Time.deltaTime * _dissolveSpeed;
+                SphereMaterial_Stone.SetFloat("_Dissolve", _dissolveValue);
+
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+            
+
+            isDissolving = false;
+    }
+    private IEnumerator DissolveRocks02()
+    {
+        isDissolving = true;
+
+        _dissolveValue = _valueStart;
+
+        while(_dissolveValue > _valueEnd)
+        {
+            _dissolveValue -= Time.deltaTime * _dissolveSpeed;
+            SphereMaterial_Stone_02.SetFloat("_Dissolve", _dissolveValue);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+            
+
+        isDissolving = false;
+        Destroy(stones);
     }
 
     private void OnTriggerStay(Collider other)

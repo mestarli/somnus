@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve_M
+  m_Name: Dissolve_M_Gris
   m_Shader: {fileID: -6465566751694194690, guid: cddfa923f115d774ea412754fce739a1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -46,13 +46,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dissolve: 0.0018316972
+    - _Dissolve: -0.0070221513
     - _EdgeScale: 0.794
     - _NoiseScale: 54.6
     - _NoiseStrength: -5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.11764707, g: 0.4156863, b: 0.42352945, a: 0}
+    - _Color: {r: 0.4901961, g: 0.56078434, b: 0.5294118, a: 0}
     - _EdgeColor: {r: 0, g: 259.3833, b: 1024, a: 1}
   m_BuildTextureStacks: []
