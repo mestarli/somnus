@@ -14,6 +14,7 @@ TagManager:
   - enemy_melee_attack
   - enemy
   - enemy_magic_attack
+  - magic_attack
   layers:
   - Default
   - TransparentFX

@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532021960623073782, guid: 03395a97274860049ab529585ced3399, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03395a97274860049ab529585ced3399, type: 3}
@@ -1469,7 +1469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7723386281845544688, guid: 320c6ad7e9d880f40af8df25756fcb73, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7723386281845544688, guid: 320c6ad7e9d880f40af8df25756fcb73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2540,7 +2540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7723386281845544688, guid: 320c6ad7e9d880f40af8df25756fcb73, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7723386281845544688, guid: 320c6ad7e9d880f40af8df25756fcb73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3229,10 +3229,10 @@ PrefabInstance:
       propertyPath: espadaUI
       value: 
       objectReference: {fileID: 1818170560}
-    - target: {fileID: 1712837252567370214, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
-      propertyPath: SphereMaterial_bridge
-      value: 
-      objectReference: {fileID: 2100000, guid: 10e834384383d3f488133bb5159b06a1, type: 2}
+    - target: {fileID: 2538629062921887632, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
+      propertyPath: life
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2644102074044545095, guid: 5f54c5fe41fcf5348a56510a69508d9f, type: 3}
       propertyPath: m_RootOrder
       value: 0

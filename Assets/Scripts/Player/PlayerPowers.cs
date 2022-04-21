@@ -39,6 +39,9 @@ public class PlayerPowers : MonoBehaviour
     private float _valueStart = 1;
     private float _valueEnd = 0;
     [SerializeField] private float _dissolveSpeed;
+
+    [SerializeField] private GameObject baston;
+    [SerializeField] private GameObject espada;
     public static PlayerPowers Instance { get; set; }
     void Awake()
     {
@@ -66,6 +69,12 @@ public class PlayerPowers : MonoBehaviour
             triggerAttack.active = true;
             basicAttack();
         }
+        
+        if (Input.GetMouseButtonDown(0) && _playerController.isGrounded)
+        {
+            magicSwordAttack();
+        }
+
 
         if (Input.GetKeyDown(KeyCode.T) && _playerController.isGrounded)
         {
@@ -77,7 +86,6 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void basicAttack()
    {
-       Debug.Log("Ataque básico");
        _animator.SetBool("IsAttacking", true);
    }
 
@@ -102,7 +110,22 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void magicSwordAttack()
     {
-        
+        if(_playerController.counterOrbs >=4)
+        {
+            baston.active = false;
+            espada.active = true;
+            isMakingActions = true;
+            callCoroutineUI(espadaUI);
+            _animator.SetBool("IsMagicAttack", true);
+        }
+    }
+    
+    public void resetMagicSword()
+    {
+        baston.active = true;
+        espada.active = false;
+        isMakingActions = false;
+        _animator.SetBool("IsMagicAttack", false);
     }
 
     /// <summary>
