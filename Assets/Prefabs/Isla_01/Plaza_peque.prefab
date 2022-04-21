@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4340578406572871194}
   - component: {fileID: 4761724999046092543}
   - component: {fileID: 4340578406572871195}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plaza_peque
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3413197902024857414}
-  m_LocalRotation: {x: -0.00069557107, y: -0.0016407927, z: -0.00065776886, w: 0.9999982}
+  m_LocalRotation: {x: -0.0006970063, y: -0.0016409834, z: -0.0006555953, w: 0.9999983}
   m_LocalPosition: {x: -107.3, y: -1.1, z: 100.8}
-  m_LocalScale: {x: 5.5, y: 5.5, z: 5.5}
+  m_LocalScale: {x: 4.041565, y: 4.041565, z: 4.041565}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.08, y: -0.188, z: -0.075}
 --- !u!33 &4340578406572871194
 MeshFilter:
   m_ObjectHideFlags: 0
