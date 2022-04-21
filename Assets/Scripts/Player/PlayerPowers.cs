@@ -131,6 +131,7 @@ public class PlayerPowers : MonoBehaviour
             //Faltará añadir la animación
             isMakingActions = true;
             callCoroutineUI(PuenteUI);
+            _animator.SetTrigger("IsSpelling");
             bridges.SetActive(true);
             _playerController.DiscountOrbs(2);
         }
@@ -166,7 +167,6 @@ public class PlayerPowers : MonoBehaviour
             
             StartCoroutine(DissolveRocks());
             StartCoroutine(DissolveRocks02());
-            //Destroy(stones);
             _playerController.DiscountOrbs(2);
         }
     }
@@ -210,7 +210,6 @@ public class PlayerPowers : MonoBehaviour
         isDissolving = false;
         Destroy(stones);
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "stones")

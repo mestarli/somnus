@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb383fdde66e58419aaa7012b7022f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 100
+  life: 10
   maxLife: 100
   gravity: -9.81
   speed: 8.5
@@ -1587,7 +1587,15 @@ MonoBehaviour:
   bridge: {fileID: 0}
   shell: {fileID: 3457194957412545161}
   triggerAttack: {fileID: 4580751434953220284}
+  espadaUI: {fileID: 0}
+  EscudoUI: {fileID: 0}
+  LunaUI: {fileID: 0}
+  PuenteUI: {fileID: 0}
+  RocasUI: {fileID: 0}
+  SphereMaterial_Stone: {fileID: 2100000, guid: f0771af780bb7204b8cf2a23840b5ee2, type: 2}
+  SphereMaterial_Stone_02: {fileID: 2100000, guid: 2a728bf5e7f34b14e91e2c779686fe80, type: 2}
   isMakingActions: 0
+  _dissolveSpeed: 0.62
 --- !u!1 &3579927299153356865
 GameObject:
   m_ObjectHideFlags: 0
