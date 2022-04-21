@@ -16,6 +16,13 @@ public class PlayerPowers : MonoBehaviour
     [SerializeField] private GameObject bridge;
     [SerializeField] private GameObject shell;
     [SerializeField] private GameObject triggerAttack;
+    
+    //Para los iconos
+    [SerializeField] private GameObject espadaUI;
+    [SerializeField] private GameObject EscudoUI;
+    [SerializeField] private GameObject LunaUI;
+    [SerializeField] private GameObject PuenteUI;
+    [SerializeField] private GameObject RocasUI;
 
     private PlayerController _playerController;
 
@@ -71,9 +78,10 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void Shell()
     {
-        if (!isActiveShell)
+        if (!isActiveShell && _playerController.counterOrbs >=2)
         {
             shell.SetActive(true);
+            callCoroutineUI(EscudoUI);
             _playerController.DiscountOrbs(2);
             StartCoroutine(countDownShell());
         }   
@@ -109,11 +117,12 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void constructBridge(GameObject bridges)
     {
-        if (_playerController.counterOrbs >= 10 && isActiveBridge && !bridges.active)
+        if (_playerController.counterOrbs >= 2 && isActiveBridge && !bridges.active)
         {
             //Faltará añadir la animación
+            callCoroutineUI(PuenteUI);
             bridges.SetActive(true);
-            _playerController.DiscountOrbs(10);
+            _playerController.DiscountOrbs(2);
             isMakingActions = false;
         }
     }
@@ -122,11 +131,12 @@ public class PlayerPowers : MonoBehaviour
     /// </summary>
     public void moveRocks(GameObject stones)
     {
-        if (_playerController.counterOrbs >= 10 && isActiveStone && stones)
+        if (_playerController.counterOrbs >= 2 && isActiveStone && stones)
         {
             //Faltará añadir la animación
+            callCoroutineUI(RocasUI);
             Destroy(stones);
-            _playerController.DiscountOrbs(10);
+            _playerController.DiscountOrbs(2);
             isMakingActions = false;
         }
     }
@@ -158,8 +168,19 @@ public class PlayerPowers : MonoBehaviour
 
     IEnumerator countDownShell()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         shell.SetActive(false);
         isMakingActions = false;
+    }
+
+    public void callCoroutineUI(GameObject UIButton)
+    {
+        StartCoroutine(countActiveHabilidadUI(UIButton));
+    }
+    IEnumerator countActiveHabilidadUI(GameObject UIButton)
+    {
+        UIButton.gameObject.transform.GetChild(1).gameObject.active = true;
+        yield return new WaitForSeconds(1.5f);
+        UIButton.gameObject.transform.GetChild(1).gameObject.active = false;
     }
 }
