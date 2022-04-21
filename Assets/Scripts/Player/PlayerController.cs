@@ -169,8 +169,16 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+        //El ataque magico quita 10
+        if (other.gameObject.tag == "enemy_magic_attack")
+        {
+            Destroy(other.gameObject);
+            restarVida(10f);
+        }
     }
 
+
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "infinito")
@@ -188,19 +196,12 @@ public class PlayerController : MonoBehaviour
         {
             restarVida(5f);
         }
-
-        //El ataque magico quita 10
-        if (other.gameObject.tag == "enemy_magic_attack")
-        {
-            Destroy(other.gameObject);
-            restarVida(10f);
-        }
-
         //El chocarse con enemigos quita 1
         if (other.gameObject.tag == "enemy")
         {
             restarVida(1f);
         }
+        
 
     }
 
@@ -211,7 +212,8 @@ public class PlayerController : MonoBehaviour
         if (life <= 0)
         {
             
-            _animator.SetTrigger("Die");
+            _animator.SetTrigger("Damage");
+            StartCoroutine(courotineShowGameOver());
         }
         else
         {
@@ -219,9 +221,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    IEnumerator courotineShowGameOver()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("GameOver");
+    }
     public void showGameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        
     }
 
     /// <summary>
