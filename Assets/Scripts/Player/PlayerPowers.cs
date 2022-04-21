@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerPowers : MonoBehaviour
