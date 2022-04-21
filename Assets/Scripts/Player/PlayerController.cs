@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        Cursor.visible = false;
         _animator = GetComponent<Animator>();
         initialSpeed = speed;
         _rigidbody = GetComponent<Rigidbody>();
@@ -208,6 +209,7 @@ public class PlayerController : MonoBehaviour
     public void restarVida(float restar_vida)
     {
         life -= restar_vida;
+        UIManager.Instance.UpdateLife(life, maxLife);
         PlayerPowers.Instance.isMakingActions = true;
         if (life <= 0)
         {

@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Cursor.visible = false;
+        Screen.SetResolution(1920, 1080, true);
     }
     
     // Start is called before the first frame update
