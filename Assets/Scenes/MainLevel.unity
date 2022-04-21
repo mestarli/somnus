@@ -7802,10 +7802,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 543450652122143519}
     m_Modifications:
     - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: waypoints.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 1953547515}
@@ -7817,42 +7813,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[2]
       value: 
       objectReference: {fileID: 221183498}
-    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: waypoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: waypoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: waypoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: waypoints.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: waypoints.Array.data[7]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1436983240, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
       propertyPath: movePositionTransform
       value: 
       objectReference: {fileID: 1322808341}
-    - target: {fileID: 116609826958191835, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: m_Radius
-      value: 3.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 116609826958191835, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: m_BaseOffset
-      value: -0.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 116609826958191835, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.21
-      objectReference: {fileID: 0}
     - target: {fileID: 4798615669732770993, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -13822,6 +13786,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 543450652122143519}
     m_Modifications:
+    - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
+      propertyPath: orbeSpawn
+      value: 
+      objectReference: {fileID: 881870671087693741, guid: ccb68b6a50b7fa843a0a226ae99d7326, type: 3}
     - target: {fileID: 880865164, guid: 985e5e813eb3cba408abbf70d664beee, type: 3}
       propertyPath: waypoints.Array.size
       value: 3
